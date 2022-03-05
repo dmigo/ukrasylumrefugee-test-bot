@@ -2,10 +2,18 @@ import logging
 from functools import wraps
 
 from telegram import Update, Bot, ParseMode
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
+from telegram.ext import (
+    Updater,
+    CommandHandler,
+    MessageHandler,
+    Filters,
+    CallbackContext,
+)
 from telegram.utils.helpers import effective_message_type
 
 import os
+
+from faq import faq
 
 APP_NAME = os.environ.get("APP_NAME", "telegram-bot-help-in-berlin")
 PORT = int(os.environ.get("PORT", 5000))
@@ -38,18 +46,25 @@ logger = logging.getLogger(__name__)
 # Permissions
 def restricted(func):
     """A decorator that limits the access to commands only for admins"""
+
     @wraps(func)
     def wrapped(bot: Bot, context: CallbackContext, *args, **kwargs):
         user_id = context.effective_user.id
         chat_id = context.effective_chat.id
         admins = [u.user.id for u in bot.get_chat_administrators(chat_id)]
+
         if user_id not in admins:
+            logger.warn("Non admin attempts to access a restricted function")
             return
+
+        logger.info("Restricted function permission granted")
         return func(bot, context, *args, **kwargs)
+
     return wrapped
 
 
 def send_reminder(bot: Bot, chat_id: str):
+    """send_reminder"""
     chat = bot.get_chat(chat_id)
     message = chat.pinned_message.text if chat.pinned_message else REMINDER_MESSAGE
     logger.info(f"Sending a reminder to chat {chat_id}")
