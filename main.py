@@ -1,7 +1,7 @@
 import logging
 from functools import wraps
 
-from telegram import Update, Bot, ParseMode
+from telegram import Message, Update, Bot, ParseMode
 from telegram.ext import (
     Updater,
     CommandHandler,
@@ -15,7 +15,7 @@ import os
 
 from faq import faq
 
-APP_NAME = os.environ.get("APP_NAME", "ukrasylumrefugee-test-bot")
+APP_NAME = os.environ["APP_NAME"]
 PORT = int(os.environ.get("PORT", 5000))
 TOKEN = os.environ["TOKEN"]
 REMINDER_MESSAGE = """
@@ -66,9 +66,13 @@ def restricted(func):
 def send_reminder(bot: Bot, chat_id: str):
     """send_reminder"""
     chat = bot.get_chat(chat_id)
-    message = chat.pinned_message.text if chat.pinned_message else REMINDER_MESSAGE
+    msg: Message = chat.pinned_message
     logger.info(f"Sending a reminder to chat {chat_id}")
-    bot.send_message(chat_id=chat_id, text=message)
+    if msg:
+        logger.info(str(msg.to_dict()))
+        bot.send_message(chat_id=chat_id, **msg.to_dict())
+    else:
+        bot.send_message(chat_id=chat_id, text=REMINDER_MESSAGE)
 
 
 def help_command(bot: Bot, update: Update) -> None:
