@@ -20,7 +20,14 @@ from faq import faq
 APP_NAME = os.environ["APP_NAME"]
 PORT = int(os.environ.get("PORT", 5000))
 TOKEN = os.environ["TOKEN"]
-REMINDER_MESSAGE = os.environ.get("REMINDER_MESSAGE", "I WILL POST PINNED MESSAGE HERE")
+REMINDER_MESSAGE = os.environ.get("REMINDER_MESSAGE", """
+  Где регистрироваться по приезду?
+  В чём разница между статусом беженца и временным убежищем (параграф 24)?
+  Что если у меня временный вид на жительство?
+  Можно ли со старыми паспортами или без документов?
+  Окажут ли медицинскую помощь?
+  Ответы в закреплённом посте!
+""")
 REMINDER_INTERVAL = int(os.environ.get("REMINDER_INTERVAL", 30 * 60))
 
 # Enable logging
