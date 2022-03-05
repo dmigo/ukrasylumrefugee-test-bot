@@ -68,9 +68,9 @@ def send_reminder(bot: Bot, chat_id: str):
     chat = bot.get_chat(chat_id)
     msg: Message = chat.pinned_message
     logger.info(f"Sending a reminder to chat {chat_id}")
+
     if msg:
-        logger.info(str(msg.to_dict()))
-        bot.send_message(chat_id=chat_id, **msg.to_dict())
+        bot.forward_message(chat_id, chat_id, msg.message_id)
     else:
         bot.send_message(chat_id=chat_id, text=REMINDER_MESSAGE)
 
