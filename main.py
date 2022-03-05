@@ -15,7 +15,7 @@ import os
 
 from faq import faq
 
-APP_NAME = os.environ.get("APP_NAME", "telegram-bot-help-in-berlin")
+APP_NAME = os.environ.get("APP_NAME", "ukrasylumrefugee-test-bot")
 PORT = int(os.environ.get("PORT", 5000))
 TOKEN = os.environ["TOKEN"]
 REMINDER_MESSAGE = """
