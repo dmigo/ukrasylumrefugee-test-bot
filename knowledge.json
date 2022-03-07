@@ -1,9 +1,24 @@
 {
   "replies": [
-    { "title": "DE", "content": "Прочитайте пожалуйста информацию в методичке https://t.me/ukrasylumrefugee/6604" },
-    { "title": "UK", "content": "Информация по визам в UK здесь: https://www.gov.uk/guidance/support-for-family-members-of-british-nationals-in-ukraine-and-ukrainian-nationals-in-ukraine-and-the-uk" },
-    { "title": "test 3", "content": "Content for the third test" },
-    { "title": "test 4", "content": "Content for the fourth test" },
-    { "title": "test 5", "content": "Задайте пожалуйуста этот вопрос в основном канале помощи в Берлине" }
+    {
+      "title": "DE",
+      "content": "Прочитайте пожалуйста информацию в методичке https://t.me/ukrasylumrefugee/6604"
+    },
+    {
+      "title": "UK",
+      "content": "test"
+    },
+    {
+      "title": "test 3",
+      "content": "Content for the third test"
+    },
+    {
+      "title": "test 4",
+      "content": "Content for the fourth test"
+    },
+    {
+      "title": "test 5",
+      "content": "Задайте пожалуйуста этот вопрос в основном канале помощи в Берлине"
+    }
   ]
 }
